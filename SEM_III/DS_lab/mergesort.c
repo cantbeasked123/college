@@ -1,3 +1,4 @@
+//expt3a
 #include<stdio.h>
 #define MAX 100
 void merge_sort (int a[],int low,int high);
