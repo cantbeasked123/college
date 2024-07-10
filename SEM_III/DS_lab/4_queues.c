@@ -1,3 +1,5 @@
+//expt2b 
+
 #include<stdio.h>
 #define max 4
 int queue[100],front=-1,rear=-1;
