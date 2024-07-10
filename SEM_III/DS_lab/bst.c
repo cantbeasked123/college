@@ -1,3 +1,5 @@
+//expt10
+
 #include<stdio.h>
 struct Node{
     int data;
