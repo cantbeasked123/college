@@ -1,3 +1,5 @@
+//expt2a
+
 #include<stdio.h>
 #define max 4
 int stack[50];top=-1;
