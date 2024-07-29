@@ -1,0 +1,315 @@
+Microsoft Windows [Version 10.0.19045.4651]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\student>cd\
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 2
+Server version: 10.1.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use 22co16;
+Database changed
+MariaDB [22co16]> show tables;
++------------------+
+| Tables_in_22co16 |
++------------------+
+| dept             |
+| employee         |
++------------------+
+2 rows in set (0.00 sec)
+
+MariaDB [22co16]> select * from dept;
++-----+-------+
+| Did | Dname |
++-----+-------+
+|   1 | comp  |
+|   2 | mech  |
++-----+-------+
+2 rows in set (0.00 sec)
+
+MariaDB [22co16]> drop table dept;
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [22co16]> show tables;
++------------------+
+| Tables_in_22co16 |
++------------------+
+| employee         |
++------------------+
+1 row in set (0.00 sec)
+
+MariaDB [22co16]> CREATE TABLE dept(Did INT(3) PRIMARY KEY,Dname VARCHAR(10));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [22co16]> INSERT INTO dept VALUES(1,'COMP'),(2,'MECH');
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+MariaDB [22co16]> SELCT * FROM dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELCT * FROM dept' at line 1
+MariaDB [22co16]>
+MariaDB [22co16]> SELECT * FROM dept;
++-----+-------+
+| Did | Dname |
++-----+-------+
+|   1 | COMP  |
+|   2 | MECH  |
++-----+-------+
+2 rows in set (0.00 sec)
+
+MariaDB [22co16]> CREATE TABLE emp1_22co16(Eid INT(3) PRIMARY KEY,Ename VARCHAR(20) NOT NULL,Projno INT(3) DEFAULT 2,Eregno INT(5) UNIQUE, Age INT(3) CHECK Age>=25,Dno INT(3) REFERENCES dept(Did));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Age>=25,Dno INT(3) REFERENCES dept(Did))' at line 1
+MariaDB [22co16]>
+MariaDB [22co16]> CREATE TABLE emp1_22co16(Eid INT(3) PRIMARY KEY,Ename VARCHAR(20) NOT NULL,Projno INT(3) DEFAULT 2,Eregno INT(5) UNIQUE,Age INT(3) CHECK Age>=25,Dno INT(3) REFERENCES dept(Did));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Age>=25,Dno INT(3) REFERENCES dept(Did))' at line 1
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]> CREATE TABLE emp1_22co16(Eid INT(3) PRIMARY KEY,Ename VARCHAR(20) NOT NULL,Projno INT(3) DEFAULT 2,Eregno INT(5) UNIQUE,Age INT(3) CHECK (Age>=25),Dno INT(3) REFERENCES dept(Did));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [22co16]> DESC emp1_22co16;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Eid    | int(3)      | NO   | PRI | NULL    |       |
+| Ename  | varchar(20) | NO   |     | NULL    |       |
+| Projno | int(3)      | YES  |     | 2       |       |
+| Eregno | int(5)      | YES  | UNI | NULL    |       |
+| Age    | int(3)      | YES  |     | NULL    |       |
+| Dno    | int(3)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+MariaDB [22co16]> CREATE TABLE emp2_22co16(Eid INT(3) PRIMARY KEY,Ename VARCHAR(20) NOT NULL,Projno INT(3) DEFAULT 2,Eregno INT(5) UNIQUE,Age INT(3) CHECK (Age>=25),Did INT(3) REFERENCES dept(Did));
+Query OK, 0 rows affected (0.05 sec)
+
+MariaDB [22co16]> DESC emp2_22co16;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Eid    | int(3)      | NO   | PRI | NULL    |       |
+| Ename  | varchar(20) | NO   |     | NULL    |       |
+| Projno | int(3)      | YES  |     | 2       |       |
+| Eregno | int(5)      | YES  | UNI | NULL    |       |
+| Age    | int(3)      | YES  |     | NULL    |       |
+| Did    | int(3)      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+MariaDB [22co16]> drop table emp2_22co16;
+Query OK, 0 rows affected (0.02 sec)
+
+MariaDB [22co16]> show tables;
++------------------+
+| Tables_in_22co16 |
++------------------+
+| dept             |
+| emp1_22co16      |
+| employee         |
++------------------+
+3 rows in set (0.00 sec)
+
+MariaDB [22co16]> CREATE TABLE emp2_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20) NOT NULL,
+    -> Projno INT(3) DEFAULT 2,
+    -> Eregno INT(5) UNIQUE,
+    -> Age INT(3),
+    -> Did INT(3;)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 7
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]> CREATE TABLE emp2_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20) NOT NULL,
+    -> Projno INT(3) DEFAULT 2,
+    -> Eregno INT(5),
+    -> Age INT(3),
+    -> Did INT(3),
+    -> PRIMARY KEY(Eid),
+    -> UNIQUE(Eregno);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 9
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]> CREATE TABLE emp2_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20) NOT NULL,
+    -> Projno INT(3) DEFAULT 2,
+    -> Eregno INT(5),
+    -> Age INT(3),
+    -> Did INT(3),
+    -> PRIMARY KEY(Eid),
+    -> UNIQUE(Eregno);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 9
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]> CREATE TABLE emp2_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20) NOT NULL,
+    -> Projno INT(3) DEFAULT 2,
+    -> Eregno INT(5),
+    -> Age INT(3),
+    -> Did INT(3),
+    -> PRIMARY KEY(Eid),
+    -> UNIQUE(Eregno),
+    -> CHECK (Age>=25),
+    -> FOREIGN KEY(Did) REFERENCES dept(Did));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [22co16]> DESC emp2_22co16;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Eid    | int(3)      | NO   | PRI | NULL    |       |
+| Ename  | varchar(20) | NO   |     | NULL    |       |
+| Projno | int(3)      | YES  |     | 2       |       |
+| Eregno | int(5)      | YES  | UNI | NULL    |       |
+| Age    | int(3)      | YES  |     | NULL    |       |
+| Did    | int(3)      | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+MariaDB [22co16]> CREATE TABLE emp3_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20) NOT NULL,
+    -> Projno INT(3) DEFAULT 2,
+    -> Eregno INT(5),
+    -> Age INT(3),
+    -> Did INT(3),
+    -> CONSTRAINT pk_Eid PRIMARY KEY(Eid),
+    -> CONSTRAINT u_Eregno UNIQUE(Eregno),
+    -> CONSTRAINT c_Age CHECK(Age>=25),
+    -> CONSTRAINT fk_Did FOREIGN KEY(Did) REFERENCES dept(Did));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [22co16]> DESC emp3_22co16;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Eid    | int(3)      | NO   | PRI | NULL    |       |
+| Ename  | varchar(20) | NO   |     | NULL    |       |
+| Projno | int(3)      | YES  |     | 2       |       |
+| Eregno | int(5)      | YES  | UNI | NULL    |       |
+| Age    | int(3)      | YES  |     | NULL    |       |
+| Did    | int(3)      | YES  | MUL | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+MariaDB [22co16]> CREATE TABLE emp4_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20),
+    -> Projno INT(3),
+    -> Eregno INT(5),
+    -> Age INT(3),
+    -> Did INT(3),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 8
+MariaDB [22co16]>
+MariaDB [22co16]> CREATE TABLE emp4_22co16
+    -> (Eid INT(3),
+    -> Ename VARCHAR(20),
+    -> Projno INT(3),
+    -> Eregno INT(5),
+    -> Age INT(3),
+    -> Did INT(3));
+Query OK, 0 rows affected (0.03 sec)
+
+MariaDB [22co16]> ALTER TABLE emp4_22co16 ADD PRIMARY KEY(Eid);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [22co16]> ALTER TABLE emp4_22co16 MODIFY Ename VARCHAR(20) NOT NULL;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [22co16]> ALTER TABLE emp4_22co16 ADD CONSTRAINT u_Eregno UNIQUE(Eregno);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [22co16]> ALTER TABLE emp4_22co16 DROP INDEX u_Eregno;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [22co16]> INSERT INTO emp1_22co16 VALUES(1,'John',10,12345,29,1),(1,'Josh',10,12346,30,1);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+MariaDB [22co16]> INSERT INTO emp1_22co16 VALUES(1,'John',10,10000,29,1),(2,'Josh',10,10000,30,1);
+ERROR 1062 (23000): Duplicate entry '10000' for key 'Eregno'
+MariaDB [22co16]> INSERT INTO emp1_22co16 VALUES(1,'John',10,10000,22,1);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp1_22co16 VALUES(1,'John',10,10000,18,1);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+MariaDB [22co16]> select * from emp1_22co16;
++-----+-------+--------+--------+------+------+
+| Eid | Ename | Projno | Eregno | Age  | Dno  |
++-----+-------+--------+--------+------+------+
+|   1 | John  |     10 |  10000 |   22 |    1 |
++-----+-------+--------+--------+------+------+
+1 row in set (0.00 sec)
+
+MariaDB [22co16]> delete from emp1_22co16;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> select * from emp1_22co16;
+Empty set (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp1_22co16 VALUES(1,'John',10,10000,18,1);
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [22co16]> delete from emp1_22co16;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp3_22co16 VALUES(1,'John',10,10000,18,1);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> delete from emp1_22co16;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp1_22co16 VALUES(1,'John',10,10000,18,1);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> delete from emp1_22co16;
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [22co16]> INSERT INTO emp3_22co16 VALUES(1,'John',10,10000,18,1);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+MariaDB [22co16]> delete from emp3_22co16;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp3_22co16 VALUES(78,'John',10,10000,18,1);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> delete from emp3_22co16;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp2_22co16 VALUES(1,'John',10,10000,18,1);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> delete from emp2_22co16;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]>
+MariaDB [22co16]>
+MariaDB [22co16]> INSERT INTO emp2_22co16 VALUES(1,'John',10,100000,0,1);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> delete from emp2_22co16;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [22co16]> INSERT INTO emp2_22co16 VALUES(1,'John',10,10000,,1);
