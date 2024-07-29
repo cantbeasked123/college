@@ -5,11 +5,11 @@ class mat{
     int row1=m1.length,row2=m2.length;
     for(int i=0;i<row1;i++)
     {
-            for(int j=0;j<col2;j++)
+            for(int j=0;j<c2;j++)
             {
                     for(int k=0;i<row2;k++)
                     {
-                        temp[i][j]=m1[i][k]*m2[k][j];
+                        temp[i][j]+=m1[i][k]*m2[k][j];
                     }
             }
         return temp;
