@@ -1,0 +1,483 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Aug 8 11:52:23 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system/system
+Connected.
+SQL> CREATE TABLE Customer_22co16(first_name VARCHAR(10),last_name VARCHAR(10));
+
+Table created.
+
+SQL> CREATE TABLE Employee_22co16(first_name VARCHAR(10),last_name VARCHAR(10));
+
+Table created.
+
+SQL> INSERT INTO Customer_22co16 VALUES('Stephen','Jones'),('Mark','Smith'),('Denise','King'),('Paula','Johnson'),('Richard','Archer');
+INSERT INTO Customer_22co16 VALUES('Stephen','Jones'),('Mark','Smith'),('Denise','King'),('Paula','Johnson'),('Richard','Archer')
+                                                     *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> INSERT INTO Customer_22co16 VALUES('Stephen','Jones');
+
+1 row created.
+
+SQL> INSERT INTO Customer_22co16 VALUES('Mark','Smith');
+
+1 row created.
+
+SQL> INSERT INTO Customer_22co16 VALUES('Denise','King');
+
+1 row created.
+
+SQL> INSERT INTO Customer_22co16 VALUES('Paula','Johnson');
+
+1 row created.
+
+SQL> INSERT INTO Customer_22co16 VALUES('Richard','Archer');
+
+1 row created.
+
+SQL> SELECT * FROM Employee_22co16;
+
+no rows selected
+
+SQL> SELECT first_name,last_name FROM Employee_22co16;
+
+no rows selected
+
+SQL> INSERT INTO Customer_22co16 VALUES('Christina','Jones');
+
+1 row created.
+
+SQL> delete from Customer_22co16 whewre first_name="Christina";
+delete from Customer_22co16 whewre first_name="Christina"
+                                   *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> delete from Customer_22co16 where first_name="Christina";
+delete from Customer_22co16 where first_name="Christina"
+                                             *
+ERROR at line 1:
+ORA-00904: "Christina": invalid identifier
+
+
+SQL> delete from Customer_22co16 where first_name='Christina';
+
+1 row deleted.
+
+SQL> SELECT * FROM customer_22co16
+  2  SELECT * FROM customer_22co16;
+SELECT * FROM customer_22co16
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT * FROM customer_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Stephen    Jones
+Mark       Smith
+Denise     King
+Paula      Johnson
+Richard    Archer
+
+SQL>
+SQL>
+SQL>
+SQL> INSERT INTO Employee_22co16 VALUES('Christina','Jones');
+
+1 row created.
+
+SQL> INSERT INTO Employee_22co16 VALUES('Micheal','McDonald');
+
+1 row created.
+
+SQL> INSERT INTO Employee_22co16 VALUES('Paula','Johnson');
+
+1 row created.
+
+SQL> INSERT INTO Employee_22co16 VALUES('Stephen','Jones');
+
+1 row created.
+
+SQL> INSERT INTO Employee_22co16 VALUES('Richard','Smith');
+
+1 row created.
+
+SQL> SELECT * FROM Customer_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Stephen    Jones
+Mark       Smith
+Denise     King
+Paula      Johnson
+Richard    Archer
+
+SQL> SELECT * FROM Employee_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Christina  Jones
+Micheal    McDonald
+Paula      Johnson
+Stephen    Jones
+Richard    Smith
+
+SQL> SELECT 'Customer' AS recordtype * FROM Employee_22co16;
+SELECT 'Customer' AS recordtype * FROM Employee_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT 'Customer' AS recordtype FROM Employee_22co16;
+
+RECORDTY
+--------
+Customer
+Customer
+Customer
+Customer
+Customer
+
+SQL> SELECT * FROM Customer_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Stephen    Jones
+Mark       Smith
+Denise     King
+Paula      Johnson
+Richard    Archer
+
+SQL> alter table employee_22co16 drop column recordty;
+alter table employee_22co16 drop column recordty
+                                        *
+ERROR at line 1:
+ORA-00904: "RECORDTY": invalid identifier
+
+
+SQL> SELECT * FROM Employee_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Christina  Jones
+Micheal    McDonald
+Paula      Johnson
+Stephen    Jones
+Richard    Smith
+
+SQL>
+SQL>
+SQL> SELECT 'Customer' AS recordtype, * FROM Customer_22co16;
+SELECT 'Customer' AS recordtype, * FROM Customer_22co16
+                                 *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> SELECT 'Customer' AS recordtype * FROM Customer_22co16;
+SELECT 'Customer' AS recordtype * FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT 'Customer' AS recordtype first_name,last_name FROM Customer_22co16;
+SELECT 'Customer' AS recordtype first_name,last_name FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT "Customer" AS recordtype first_name,last_name FROM Customer_22co16;
+SELECT "Customer" AS recordtype first_name,last_name FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT "Customer" AS recordtype FROM Customer_22co16;
+SELECT "Customer" AS recordtype FROM Customer_22co16
+       *
+ERROR at line 1:
+ORA-00904: "Customer": invalid identifier
+
+
+SQL> SELECT "Customer" AS recordtype * FROM Customer_22co16;
+SELECT "Customer" AS recordtype * FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT "Customer" AS record_type * FROM Customer_22co16;
+SELECT "Customer" AS record_type * FROM Customer_22co16
+                                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT 'Customer' AS recordtype * FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT 'Employee' AS recordtype * FROM Employee_22co16;
+SELECT 'Customer' AS recordtype * FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT "Customer" AS recordtype * FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT "Employee" AS recordtype * FROM Employee_22co16;
+SELECT "Customer" AS recordtype * FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT "Customer" AS recordtype FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT "Employee" AS recordtype FROM Employee_22co16;
+SELECT "Customer" AS recordtype FROM Customer_22co16
+       *
+ERROR at line 1:
+ORA-00904: "Customer": invalid identifier
+
+
+SQL> SELECT "Customer" AS recordtype first_name FROM Customer_22co16
+  2  UNION ALL
+  3  UNION ALL
+  4  ;
+SELECT "Customer" AS recordtype first_name FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL>
+SQL>
+SQL>
+SQL> SELECT "Customer" AS recordtype first_name,last_name FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT "Employee" AS recordtype first_name,last_name FROM Employee_22co16;
+SELECT "Customer" AS recordtype first_name,last_name FROM Customer_22co16
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT "Customer" AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT "Employee" AS recordtype,first_name,last_name FROM Employee_22co16;
+SELECT "Customer" AS recordtype,first_name,last_name FROM Customer_22co16
+       *
+ERROR at line 1:
+ORA-00904: "Customer": invalid identifier
+
+
+SQL>
+SQL>
+SQL>
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16;
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Stephen    Jones
+Customer Mark       Smith
+Customer Denise     King
+Customer Paula      Johnson
+Customer Richard    Archer
+Employee Christina  Jones
+Employee Micheal    McDonald
+Employee Paula      Johnson
+Employee Stephen    Jones
+Employee Richard    Smith
+
+10 rows selected.
+
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16
+  4  ORDER BY recordtype,last_name,first_name;
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Richard    Archer
+Customer Paula      Johnson
+Customer Stephen    Jones
+Customer Denise     King
+Customer Mark       Smith
+Employee Paula      Johnson
+Employee Christina  Jones
+Employee Stephen    Jones
+Employee Micheal    McDonald
+Employee Richard    Smith
+
+10 rows selected.
+
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16
+  4  WHERE first_name='Richard';
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Stephen    Jones
+Customer Mark       Smith
+Customer Denise     King
+Customer Paula      Johnson
+Customer Richard    Archer
+Employee Richard    Smith
+
+6 rows selected.
+
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16
+  4  WHERE first_name='Richard';
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Denise     King
+Customer Mark       Smith
+Customer Paula      Johnson
+Customer Richard    Archer
+Customer Stephen    Jones
+Employee Richard    Smith
+
+6 rows selected.
+
+SQL> WHERE first_name='Richard';
+SP2-0734: unknown command beginning "WHERE firs..." - rest of line ignored.
+SQL>
+SQL>
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16;
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Denise     King
+Customer Mark       Smith
+Customer Paula      Johnson
+Customer Richard    Archer
+Customer Stephen    Jones
+Employee Christina  Jones
+Employee Micheal    McDonald
+Employee Paula      Johnson
+Employee Richard    Smith
+Employee Stephen    Jones
+
+10 rows selected.
+
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16
+  4  ORDER BY recordtype,last_name,first_name;
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Richard    Archer
+Customer Paula      Johnson
+Customer Stephen    Jones
+Customer Denise     King
+Customer Mark       Smith
+Employee Paula      Johnson
+Employee Christina  Jones
+Employee Stephen    Jones
+Employee Micheal    McDonald
+Employee Richard    Smith
+
+10 rows selected.
+
+SQL> SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16 WHERE first_name="Richard"
+  2  UNION
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16
+  4  sdc
+  5  ;
+SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16 WHERE first_name="Richard"
+                                                                                           *
+ERROR at line 1:
+ORA-00904: "Richard": invalid identifier
+
+
+SQL>
+SQL>
+SQL>
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16 WHERE first_name="Richard";
+SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16 WHERE first_name="Richard"
+                                                                                           *
+ERROR at line 1:
+ORA-00904: "Richard": invalid identifier
+
+
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16 WHERE first_name="Richard"
+  2  UNION
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16 WHERE first_name="Richard";
+SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16 WHERE first_name="Richard"
+                                                                                           *
+ERROR at line 1:
+ORA-00904: "Richard": invalid identifier
+
+
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16 WHERE first_name='Richard'
+  2  UNION
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16 WHERE first_name='Richard';
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Richard    Archer
+Employee Richard    Smith
+
+SQL>
+SQL>
+SQL> SELECT 'Customer' AS recordtype,first_name,last_name FROM Customer_22co16
+  2  UNION ALL
+  3  SELECT 'Employee' AS recordtype,first_name,last_name FROM Employee_22co16;
+
+RECORDTY FIRST_NAME LAST_NAME
+-------- ---------- ----------
+Customer Stephen    Jones
+Customer Mark       Smith
+Customer Denise     King
+Customer Paula      Johnson
+Customer Richard    Archer
+Employee Christina  Jones
+Employee Micheal    McDonald
+Employee Paula      Johnson
+Employee Stephen    Jones
+Employee Richard    Smith
+
+10 rows selected.
+
+SQL> SELECT first_name,last_name FROM Customer_22co16
+  2  MINUS
+  3  SELECT first_name,last_name FROM Employee_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Denise     King
+Mark       Smith
+Richard    Archer
+
+SQL> SELECT first_name,last_name FROM Customer_22co16
+  2  INTERSECT
+  3  SELECT first_name,last_name FROM Employee_22co16;
+
+FIRST_NAME LAST_NAME
+---------- ----------
+Paula      Johnson
+Stephen    Jones
+
+SQL> 
