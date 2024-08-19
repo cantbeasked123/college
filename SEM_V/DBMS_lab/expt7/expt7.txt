@@ -1,0 +1,666 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Aug 19 11:38:19 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system/system;
+Connected.
+SQL> CREATE TABLE dept_22co16(DID INT(3),Dname VARCHAR(20),Loc VARCHAR(15),Mgrid INT(3));
+CREATE TABLE dept_22co16(DID INT(3),Dname VARCHAR(20),Loc VARCHAR(15),Mgrid INT(3))
+                                *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> CREATE TABLE dept_22co16(DID NUMBER(3) PRIMARY KEY,Dname VARCHAR(20),Loc VARCHAR(15),Mgrid NUMBER(3));
+
+Table created.
+
+SQL> INSERT INTO dept_22co16 VALUES(10,'Accounts','Bangalore',702);
+
+1 row created.
+
+SQL> INSERT INTO dept_22co16 VALUES(20,'Sales','Delhi',705);
+
+1 row created.
+
+SQL> INSERT INTO dept_22co16 VALUES(30,'Research','Pune',707);
+
+1 row created.
+
+SQL> INSERT INTO dept_22co16 VALUES(40,'Developing','Hyderabad',NULL);
+
+SQL>  created.
+SQL>
+SQL>
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire-date VARCHAR(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID INT(3));
+CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire-date VARCHAR(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID INT(3))
+                                                                                        *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL>
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire-date VARCHAR(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3));
+CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire-date VARCHAR(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3))
+                                                                                        *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire_date VARCHAR(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3));
+
+Table created.
+
+SQL> INSERT INTO emp_22co16 VALUES(707,'Vishal',9500,'01-Jan-2001','Manager',30,NULL);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(705,'Lalit',6500,'08-Oct-2002','Manager',20,707);
+
+1 row created.
+
+SQL> drop table emp_22co16;
+
+Table dropped.
+
+SQL>
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire_date DATE(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3));
+CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire_date DATE(15),Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3))
+                                                                                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL>
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire_date DATE,Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3));
+
+Table created.
+
+SQL>
+SQL>
+SQL> INSERT INTO emp_22co16 VALUES(707,'Vishal',9500,'01-Jan-2001','Manager',30,NULL);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(705,'Lalit',6500,'08-Oct-2002','Manager',20,707);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(701,'Deepak',8000,'05-Jan-2001','Analyst',30,707);
+
+1 row created.
+
+SQL>
+SQL> drop table emp_22co16;
+
+Table dropped.
+
+SQL>
+SQL>
+SQL>
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3) PRIMARY KEY,Name VARCHAR(20),Salary NUMBER(5),Hire_date DATE,Job VARCHAR(20),DID NUMBER(3) REFERENCES dept_22co16(DID),MID NUMBER(3));
+
+Table created.
+
+SQL> ALTER TABLE emp_22co16 ADD CONSTRAINT fk_DID FOREIGN KEY(MID) REFERENCES dept_22co16(EID);
+ALTER TABLE emp_22co16 ADD CONSTRAINT fk_DID FOREIGN KEY(MID) REFERENCES dept_22co16(EID)
+                                                                                     *
+ERROR at line 1:
+ORA-00904: "EID": invalid identifier
+
+
+SQL> ALTER TABLE emp_22co16 ADD CONSTRAINT fk_DID FOREIGN KEY(MID) REFERENCES emp_22co16(EID);
+
+Table altered.
+
+SQL>
+SQL>
+SQL> INSERT INTO emp_22co16 VALUES(707,'Vishal',9500,'01-Jan-2001','Manager',30,NULL);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(705,'Lalit',6500,'08-Oct-2002','Manager',20,707);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(701,'Deepak',8000,'05-Jan-2001','Analyst',30,707);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(702,'Naresh',9000,'10-Jan-2001','Manager',10,707);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(703,'Sumesh',7000,'05-Feb-2001','Salesman',20,705);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(704,'Aditya',9000,'27-Nov-2007','Analyst',30,707);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(706,'Amit',NULL,'04-Nov-2004','Clerk',10,702);
+
+1 row created.
+
+SQL> INSERT INTO emp_22co16 VALUES(708,'Sumit',8000,'06-Jan-2006','Accountant',10,702);
+
+1 row created.
+
+SQL> SELECT * FROM dept_22co16;
+
+       DID DNAME                LOC                  MGRID
+---------- -------------------- --------------- ----------
+        10 Accounts             Bangalore              702
+        20 Sales                Delhi                  705
+        30 Research             Pune                   707
+        40 Developing           Hyderabad
+
+SQL> SELECT * FROM emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager
+        30
+
+       705 Lalit                      6500 08-OCT-02 Manager
+        20        707
+
+       701 Deepak                     8000 05-JAN-01 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager
+        10        707
+
+       703 Sumesh                     7000 05-FEB-01 Salesman
+        20        705
+
+       704 Aditya                     9000 27-NOV-07 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       706 Amit                            04-NOV-04 Clerk
+        10        702
+
+       708 Sumit                      8000 06-JAN-06 Accountant
+        10        702
+
+
+8 rows selected.
+
+SQL> SELECT * FROM emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager
+        30
+
+       705 Lalit                      6500 08-OCT-02 Manager
+        20        707
+
+       701 Deepak                     8000 05-JAN-01 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager
+        10        707
+
+       703 Sumesh                     7000 05-FEB-01 Salesman
+        20        705
+
+       704 Aditya                     9000 27-NOV-07 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       706 Amit                            04-NOV-04 Clerk
+        10        702
+
+       708 Sumit                      8000 06-JAN-06 Accountant
+        10        702
+
+
+8 rows selected.
+
+SQL> SELECT * FROM emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager
+        30
+
+       705 Lalit                      6500 08-OCT-02 Manager
+        20        707
+
+       701 Deepak                     8000 05-JAN-01 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager
+        10        707
+
+       703 Sumesh                     7000 05-FEB-01 Salesman
+        20        705
+
+       704 Aditya                     9000 27-NOV-07 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       706 Amit                            04-NOV-04 Clerk
+        10        702
+
+       708 Sumit                      8000 06-JAN-06 Accountant
+        10        702
+
+
+8 rows selected.
+
+SQL> set linesize 160;
+SQL> SELECT * FROM emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707
+       706 Amit                            04-NOV-04 Clerk                        10        702
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702
+
+8 rows selected.
+
+SQL>
+SQL>
+SQL> SELECT * FROM dept_22co16;
+
+       DID DNAME                LOC                  MGRID
+---------- -------------------- --------------- ----------
+        10 Accounts             Bangalore              702
+        20 Sales                Delhi                  705
+        30 Research             Pune                   707
+        40 Developing           Hyderabad
+
+SQL> SELECT * FROM emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707
+       706 Amit                            04-NOV-04 Clerk                        10        702
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702
+
+8 rows selected.
+
+SQL> S
+SP2-0042: unknown command "S" - rest of line ignored.
+SQL>
+SQL>
+SQL> SELECT * FROM emp_22co16,dept_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME             LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+                10 Accounts             Bangalore              702
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707      10 Accounts             Bangalore              702
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707      10 Accounts             Bangalore              702
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707      10 Accounts             Bangalore              702
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705      10 Accounts             Bangalore              702
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707      10 Accounts             Bangalore              702
+       706 Amit                            04-NOV-04 Clerk                        10        702      10 Accounts             Bangalore              702
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702      10 Accounts             Bangalore              702
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+                20 Sales                Delhi                  705
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707      20 Sales                Delhi                  705
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707      20 Sales                Delhi                  705
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME             LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707      20 Sales                Delhi                  705
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705      20 Sales                Delhi                  705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707      20 Sales                Delhi                  705
+       706 Amit                            04-NOV-04 Clerk                        10        702      20 Sales                Delhi                  705
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702      20 Sales                Delhi                  705
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+                30 Research             Pune                   707
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707      30 Research             Pune                   707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707      30 Research             Pune                   707
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707      30 Research             Pune                   707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705      30 Research             Pune                   707
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707      30 Research             Pune                   707
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME             LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       706 Amit                            04-NOV-04 Clerk                        10        702      30 Research             Pune                   707
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702      30 Research             Pune                   707
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+                40 Developing           Hyderabad
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707      40 Developing           Hyderabad
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707      40 Developing           Hyderabad
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707      40 Developing           Hyderabad
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705      40 Developing           Hyderabad
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707      40 Developing           Hyderabad
+       706 Amit                            04-NOV-04 Clerk                        10        702      40 Developing           Hyderabad
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702      40 Developing           Hyderabad
+
+32 rows selected.
+
+SQL> SELECT * FROM emp_22co16,dept_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME                LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    10 Accounts             Bangalore              702
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         10 Accounts             Bangalore              702
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         10 Accounts             Bangalore              702
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         10 Accounts             Bangalore              702
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         10 Accounts             Bangalore              702
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         10 Accounts             Bangalore              702
+       706 Amit                            04-NOV-04 Clerk                        10        702         10 Accounts             Bangalore              702
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         10 Accounts             Bangalore              702
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    20 Sales                Delhi                  705
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         20 Sales                Delhi                  705
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         20 Sales                Delhi                  705
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME                LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         20 Sales                Delhi                  705
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         20 Sales                Delhi                  705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         20 Sales                Delhi                  705
+       706 Amit                            04-NOV-04 Clerk                        10        702         20 Sales                Delhi                  705
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         20 Sales                Delhi                  705
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    30 Research             Pune                   707
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         30 Research             Pune                   707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         30 Research             Pune                   707
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         30 Research             Pune                   707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         30 Research             Pune                   707
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         30 Research             Pune                   707
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME                LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       706 Amit                            04-NOV-04 Clerk                        10        702         30 Research             Pune                   707
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         30 Research             Pune                   707
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    40 Developing           Hyderabad
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         40 Developing           Hyderabad
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         40 Developing           Hyderabad
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         40 Developing           Hyderabad
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         40 Developing           Hyderabad
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         40 Developing           Hyderabad
+       706 Amit                            04-NOV-04 Clerk                        10        702         40 Developing           Hyderabad
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         40 Developing           Hyderabad
+
+32 rows selected.
+
+SQL>
+SQL>
+SQL> SELECT * FROM emp_22co16,dept_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME                LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    10 Accounts             Bangalore              702
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         10 Accounts             Bangalore              702
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         10 Accounts             Bangalore              702
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         10 Accounts             Bangalore              702
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         10 Accounts             Bangalore              702
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         10 Accounts             Bangalore              702
+       706 Amit                            04-NOV-04 Clerk                        10        702         10 Accounts             Bangalore              702
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         10 Accounts             Bangalore              702
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    20 Sales                Delhi                  705
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         20 Sales                Delhi                  705
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         20 Sales                Delhi                  705
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME                LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         20 Sales                Delhi                  705
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         20 Sales                Delhi                  705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         20 Sales                Delhi                  705
+       706 Amit                            04-NOV-04 Clerk                        10        702         20 Sales                Delhi                  705
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         20 Sales                Delhi                  705
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    30 Research             Pune                   707
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         30 Research             Pune                   707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         30 Research             Pune                   707
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         30 Research             Pune                   707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         30 Research             Pune                   707
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         30 Research             Pune                   707
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID        MID        DID DNAME                LOC                  MGRID
+---------- -------------------- ---------- --------- -------------------- ---------- ---------- ---------- -------------------- --------------- ----------
+       706 Amit                            04-NOV-04 Clerk                        10        702         30 Research             Pune                   707
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         30 Research             Pune                   707
+       707 Vishal                     9500 01-JAN-01 Manager                      30                    40 Developing           Hyderabad
+       705 Lalit                      6500 08-OCT-02 Manager                      20        707         40 Developing           Hyderabad
+       701 Deepak                     8000 05-JAN-01 Analyst                      30        707         40 Developing           Hyderabad
+       702 Naresh                     9000 10-JAN-01 Manager                      10        707         40 Developing           Hyderabad
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20        705         40 Developing           Hyderabad
+       704 Aditya                     9000 27-NOV-07 Analyst                      30        707         40 Developing           Hyderabad
+       706 Amit                            04-NOV-04 Clerk                        10        702         40 Developing           Hyderabad
+       708 Sumit                      8000 06-JAN-06 Accountant                   10        702         40 Developing           Hyderabad
+
+32 rows selected.
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 EQUI JOIN dept_22co16
+  3  ON emp_22co16. EQUI JOIN dept_22co16
+  4  ;
+ON emp_22co16. EQUI JOIN dept_22co16
+                    *
+ERROR at line 3:
+ORA-00920: invalid relational operator
+
+
+SQL>
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 INNER JOIN dept_22co16
+  3  FROM emp_22co16 EQUI JOIN dept_22co16;
+FROM emp_22co16 EQUI JOIN dept_22co16
+*
+ERROR at line 3:
+ORA-00905: missing keyword
+
+
+SQL>
+SQL>
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E INNER JOIN dept_22co16 D
+  3  ON E.DID=D.DID;
+
+       EID DNAME
+---------- --------------------
+       707 Research
+       705 Sales
+       701 Research
+       702 Accounts
+       703 Sales
+       704 Research
+       706 Accounts
+       708 Accounts
+
+8 rows selected.
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E LEFT OUTER JOIN dept_22co16 D
+  3  ON E.MID=D.Mgrid;
+
+       EID DNAME
+---------- --------------------
+       708 Accounts
+       706 Accounts
+       703 Sales
+       704 Research
+       702 Research
+       701 Research
+       705 Research
+       707
+
+8 rows selected.
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E RIGHT OUTER JOIN dept_22co16 D
+  3  ON E.MID=D.Mgrid;
+
+       EID DNAME
+---------- --------------------
+       705 Research
+       701 Research
+       702 Research
+       703 Sales
+       704 Research
+       706 Accounts
+       708 Accounts
+           Developing
+
+8 rows selected.
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E LEFT OUTER JOIN dept_22co16 D
+  3  ON E.MID=D.Mgrid
+  4  l
+  5  ;
+l
+*
+ERROR at line 4:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E LEFT OUTER JOIN dept_22co16 D
+  3  jhk;
+jhk
+*
+ERROR at line 3:
+ORA-00905: missing keyword
+
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E FULL OUTER JOIN dept_22co16 D
+  3  ON E.MID=D.Mgrid;
+
+       EID DNAME
+---------- --------------------
+       707
+       705 Research
+       701 Research
+       702 Research
+       703 Sales
+       704 Research
+       706 Accounts
+       708 Accounts
+           Developing
+
+9 rows selected.
+
+SQL> SELECT EID,Dname
+  2  FROM emp_22co16 E,dept_22co16 D
+  3  WHERE E.DID=D.DID;
+
+       EID DNAME
+---------- --------------------
+       707 Research
+       705 Sales
+       701 Research
+       702 Accounts
+       703 Sales
+       704 Research
+       706 Accounts
+       708 Accounts
+
+8 rows selected.
+
+SQL>
+SQL>
+SQL> SELECT E.Name,M.Name
+  2  FROM emp_22co16 E,emp_22co16 M
+  3  WHERE E.DID=M.MID;
+
+no rows selected
+
+SQL> SELECT E.Name,M.Name
+  2  FROM emp_22co16 E,emp_22co16 M
+  3  WHERE E.DID=M.MID;
+
+no rows selected
+
+SQL> SELECT E.Name,M.Name
+  2  FROM emp_22co16 E,emp_22co16 M
+  3  WHERE E.EID=M.MID;
+
+NAME                 NAME
+-------------------- --------------------
+Vishal               Lalit
+Vishal               Deepak
+Vishal               Naresh
+Lalit                Sumesh
+Vishal               Aditya
+Naresh               Amit
+Naresh               Sumit
+
+7 rows selected.
+
+SQL> SELECT E.Name AS "Employee Name",M.Name AS "Manager Name"
+  2  FROM emp_22co16 E,emp_22co16 M
+  3  WHERE E.EID=M.MID;
+
+Employee Name        Manager Name
+-------------------- --------------------
+Vishal               Lalit
+Vishal               Deepak
+Vishal               Naresh
+Lalit                Sumesh
+Vishal               Aditya
+Naresh               Amit
+Naresh               Sumit
+
+7 rows selected.
+
+SQL> SELECT EID,DName
+  2  FROM emp_22co16 NATURAL JOIN dept_22co16;
+
+       EID DNAME
+---------- --------------------
+       707 Research
+       705 Sales
+       701 Research
+       702 Accounts
+       703 Sales
+       704 Research
+       706 Accounts
+       708 Accounts
+
+8 rows selected.
+
+SQL>
