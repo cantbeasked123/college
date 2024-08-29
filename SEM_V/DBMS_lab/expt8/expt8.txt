@@ -1,0 +1,409 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Aug 29 12:14:19 2024
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect system/system
+Connected.
+SQL> CREATE TABLE dept_22co16(DID NUMBER(2),Dname VARCHAR(10),Loc VARCHAR(10),MID NUMBER(3));
+CREATE TABLE dept_22co16(DID NUMBER(2),Dname VARCHAR(10),Loc VARCHAR(10),MID NUMBER(3))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> select * from dept_22co16;
+
+       DID DNAME                LOC                  MGRID
+---------- -------------------- --------------- ----------
+        10 Accounts             Bangalore              702
+        20 Sales                Delhi                  705
+        30 Research             Pune                   707
+        40 Developing           Hyderabad
+
+SQL> select * from emp_22co16;
+
+no rows selected
+
+SQL> show tables;
+SP2-0158: unknown SHOW option "tables"
+SQL> show table;
+SP2-0158: unknown SHOW option "table"
+SQL>
+SQL>
+SQL> CREATE TABLE emp_22co16(EID NUMBER(3),Name VARCHAR(10),Salary NUMBER(5),Hire_date DATE,Job VARCHAR(10),DID NUMBER(2),MID NUMBER(3));
+CREATE TABLE emp_22co16(EID NUMBER(3),Name VARCHAR(10),Salary NUMBER(5),Hire_date DATE,Job VARCHAR(10),DID NUMBER(2),MID NUMBER(3))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL>
+SQL>
+SQL> insert into emp_rollno values(707,'Vishal',9500,'01-jan-2001','Manager',30,null);
+insert into emp_rollno values(707,'Vishal',9500,'01-jan-2001','Manager',30,null)
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+SQL>
+SQL> insert into emp_22co16 values(707,'Vishal',9500,'01-jan-2001','Manager',30,null);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(705,'Lalit',6500,'08-oct-2002','Manager',20,707);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(701,'Deepak',8000,'05-jan-2001','Analyst',30,707);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(702,'Naresh',9000,'10-jan-2001','Manager',10,707);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(703,'Sumesh',7000,'05-feb-2001','Salesman',20,705);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(704,'Aditya',9000,'27-nov-2007','Analyst',30,707);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(706,'Amit',null,'04-nov-2004','Clerk',10,702);
+
+1 row created.
+
+SQL> insert into emp_22co16 values(708,'Sumit',8000,'06-jan-2006','Accountant',10,702);
+
+1 row created.
+
+SQL>
+SQL> select * from emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager
+        30
+
+       705 Lalit                      6500 08-OCT-02 Manager
+        20        707
+
+       701 Deepak                     8000 05-JAN-01 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       702 Naresh                     9000 10-JAN-01 Manager
+        10        707
+
+       703 Sumesh                     7000 05-FEB-01 Salesman
+        20        705
+
+       704 Aditya                     9000 27-NOV-07 Analyst
+        30        707
+
+
+       EID NAME                     SALARY HIRE_DATE JOB
+---------- -------------------- ---------- --------- --------------------
+       DID        MID
+---------- ----------
+       706 Amit                            04-NOV-04 Clerk
+        10        702
+
+       708 Sumit                      8000 06-JAN-06 Accountant
+        10        702
+
+
+8 rows selected.
+
+SQL> set linesize 160;
+SQL> select * from emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID           MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+       705 Lalit                      6500 08-OCT-02 Manager                      20           707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30           707
+       702 Naresh                     9000 10-JAN-01 Manager                      10           707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20           705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30           707
+       706 Amit                            04-NOV-04 Clerk                        10           702
+       708 Sumit                      8000 06-JAN-06 Accountant                   10           702
+
+8 rows selected.
+
+SQL>
+SQL>
+SQL> SELECT name,salary
+  2  FROM emp_22co16
+  3  WHERE salary > ANY(
+  4  SELECT salary
+  5  FROM emp_22co16
+  6  WHERE job='Analyst');
+
+NAME                     SALARY
+-------------------- ----------
+Vishal                     9500
+Naresh                     9000
+Aditya                     9000
+
+SQL> SELECT name,salary
+  2  FROM emp_22co16
+  3  WHERE salary > ALL(
+  4  SELECT salary
+  5  FROM emp_22co16
+  6  WHERE job='Analyst');
+
+NAME                     SALARY
+-------------------- ----------
+Vishal                     9500
+
+SQL> SELECT name,salary
+  2  FROM emp_22co16
+  3  WHERE salary=(
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16);
+
+NAME                     SALARY
+-------------------- ----------
+Vishal                     9500
+
+SQL> SELECT COUNT(*)
+  2  FROM emp_22co16
+  3  WHERE DID=(
+  4  SELECT DID
+  5  FROM dept_22co16
+  6  WHERE Dname='Sales');
+
+  COUNT(*)
+----------
+         2
+
+SQL> SELECT COUNT(*) AS "Sales Employees"
+  2  FROM emp_22co16
+  3  WHERE DID=(
+  4  SELECT DID
+  5  FROM dept_22co16
+  6  WHERE Dname='Sales');
+
+Sales Employees
+---------------
+              2
+
+SQL> DELETE FROM emp_22co16
+  2  WHERE DID=(
+  3  SELECT DID
+  4  FROM dept_22co16
+  5  WHERE Dname='Accounts');
+
+3 rows deleted.
+
+SQL> SELECT * FROM emp_22co16;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID           MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+       705 Lalit                      6500 08-OCT-02 Manager                      20           707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30           707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20           705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30           707
+
+SQL> SELECT name AS "Sales Employees"
+  2  FROM emp_22co16
+  3  WHERE DID=(
+  4  SELECT DID
+  5  FROM dept_22co16
+  6  WHERE Dname='Sales');
+
+Sales Employees
+--------------------
+Lalit
+Sumesh
+
+SQL> SELECT name
+  2  FROM emp_22co16
+  3  WHERE DID=(
+  4  SELECT DID
+  5  FROM emp_22co16
+  6  WHERE name='Sumesh');
+
+NAME
+--------------------
+Lalit
+Sumesh
+
+SQL> SELECT *
+  2  FROM emp_22co16
+  3  WHERE DID=(
+  4  SELECT DID
+  5  FROM dept_22co16
+  6  WHERE Dname='Sales');
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID           MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       705 Lalit                      6500 08-OCT-02 Manager                      20           707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20           705
+
+SQL> SELECT name
+  2  FROM emp_22co16
+  3  WHERE DID=(
+  4  SELECT DID
+  5  FROM emp_22co16
+  6  WHERE name='Sumesh');
+
+NAME
+--------------------
+Lalit
+Sumesh
+
+SQL> SELECT *
+  2  FROM emp_22co16
+  3  WHERE salary=(
+  4  WHERE ;
+WHERE
+*
+ERROR at line 4:
+ORA-00936: missing expression
+
+
+SQL> SELECT *
+  2  FROM emp_22co16
+  3  WHERE salary>(
+  4  SELECT;
+SELECT
+*
+ERROR at line 4:
+ORA-00921: unexpected end of SQL command
+
+
+SQL>
+SQL>
+SQL> SELECT *
+  2  FROM emp_22co16 E
+  3  WHERE salary=(
+  4  SELECT AVG(salary
+  5  ;
+SELECT AVG(salary
+*
+ERROR at line 4:
+ORA-00921: unexpected end of SQL command
+
+
+SQL>
+SQL>
+SQL> SELECT *
+  2  FROM emp_22co16 E
+  3  WHERE salary>(
+  4  SELECT AVG(salary)
+  5  FROM emp_22co16 B
+  6  WHERE B.DID=E.DID);
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID           MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20           705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30           707
+
+SQL> SELECT *
+  2  FROM emp_22co16 E
+  3  WHERE salary>(
+  4  SELECT AVG(salary)
+  5  FROM emp_22co16 B
+  6  WHERE B.DID=E.DID)
+  7  ORDER BY DID;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID           MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20           705
+       704 Aditya                     9000 27-NOV-07 Analyst                      30           707
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+
+SQL> SELECT name,MAX(salary)
+  2  FROM emp_22co16
+  3  WHERE salary!=(
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16);
+SELECT name,MAX(salary)
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL>
+SQL> SELECT MAX(salary)
+  2  FROM emp_22co16
+  3  WHERE salary!=(
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16);
+
+MAX(SALARY)
+-----------
+       9000
+
+SQL> SELECT name,salary
+  2  FROM emp_22co16
+  3  WHERE salary=(
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16
+  6  WHERE salary!=(
+  7  SELECT MAX(salary)
+  8  FROM emp_22co16);
+SELECT MAX(salary)
+*
+ERROR at line 4:
+ORA-00921: unexpected end of SQL command
+
+
+SQL> SELECT name,salary
+  2  FROM emp_22co16
+  3  WHERE salary=((
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16
+  6  WHERE salary!=(
+  7  SELECT MAX(salary)
+  8  FROM emp_22co16);
+SELECT name,salary
+*
+ERROR at line 1:
+ORA-00921: unexpected end of SQL command
+
+
+SQL> SELECT name,salary
+  2  FROM emp_22co16
+  3  WHERE salary=(
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16
+  6  WHERE salary!=(
+  7  SELECT MAX(salary)
+  8  FROM emp_22co16));
+
+NAME                     SALARY
+-------------------- ----------
+Aditya                     9000
+
+SQL> SELECT *
+  2  FROM emp_22co16
+  3  WHERE salary IN(
+  4  SELECT MAX(salary)
+  5  FROM emp_22co16
+  6  GROUP BY EID)
+  7  ORDER BY salary DESC;
+
+       EID NAME                     SALARY HIRE_DATE JOB                         DID           MID
+---------- -------------------- ---------- --------- -------------------- ---------- ----------
+       707 Vishal                     9500 01-JAN-01 Manager                      30
+       704 Aditya                     9000 27-NOV-07 Analyst                      30           707
+       701 Deepak                     8000 05-JAN-01 Analyst                      30           707
+       703 Sumesh                     7000 05-FEB-01 Salesman                     20           705
+       705 Lalit                      6500 08-OCT-02 Manager                      20           707
+
+SQL>
