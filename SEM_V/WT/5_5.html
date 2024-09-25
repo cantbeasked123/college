@@ -1,0 +1,24 @@
+<html>
+<head>
+	<script>
+		function test()
+		{
+			var x=document.getElementsByClassName("c1");
+			for(var i=0;i<x.length;i++)
+			{
+				x[i].style.fontSize="30px";
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="p1" class="c1">hello</p>
+	<p id="p2" class="c2">world</p>
+	<p id="p3" class="c1">this</p>
+	<p id="p4" class="c1">is a </p>
+	<p id="p5" class="c2">demonstration of</p>
+	<p id="p6" class="c1">getElementsByClassName</p>
+	<button onclick="test()">click</button>
+
+</body>
+</html>

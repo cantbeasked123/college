@@ -1,0 +1,27 @@
+<html>
+<head>
+	<script>
+		function validate()
+		{
+			var x=document.getElementById("m").checked;
+			var y=document.getElementById("f").checked;
+			if(!x && !y)
+			{
+				alert('Select a radio button');	
+				return false;
+			}	
+			else
+			{
+				alert('Valid selection');
+				return true;
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<input type="radio" id="m" name="gender" value="male">Male<br>
+	<input type="radio" id="f" name="gender" value="female">Female<br><br>
+	<button onclick="validate()">click to validate radio buttons</button>
+</body>
+</html>
