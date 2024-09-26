@@ -1,0 +1,29 @@
+<html>
+<head>
+	<script>
+		function validate()
+		{
+			var x=document.getElementById("dropdown").value;
+			if(x=="")
+			{
+				alert('Select an option');	
+				return false;
+			}	
+			else
+			{
+				alert('Valid selection');
+				return true;
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<select id="dropdown">
+		<option value="">Select an option</option>
+		<option value="1">Option 1</option>
+		<option value="2">Option 2</option>
+	</select><br><br>
+	<button onclick="validate()">click to validate dropdown menu</button>
+</body>
+</html>

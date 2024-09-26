@@ -1,0 +1,36 @@
+<html>
+<head>
+	<script>
+		function validate()
+		{
+			var x=document.getElementsByName("lang");
+			var l="";
+			for(var i=0;i<x.length;i++)
+			{	
+				if(x[i].checked==true)
+				{
+					l=l+" "+x[i].value;
+				}
+			}
+			if(l=="")
+			{
+				alert("Select checkboxes");
+				return false;
+			}
+			else
+			{
+				alert("Checkboxes selected are:"+l);
+				return true;
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<input type="checkbox" id="m" name="lang" value="english">ENG<br>
+	<input type="checkbox" id="n" name="lang" value="konkani">KON<br>
+	<input type="checkbox" id="f" name="lang" value="hindi">HI<br><br>
+	<button onclick="validate()">click to validate checkboxes</button>
+
+</body>
+</html>
