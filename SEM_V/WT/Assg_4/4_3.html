@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script>
+        function calculateSumAndAverage()
+        {
+            var n=parseInt(prompt("Enter the number of elements:"));
+            var sum=0;
+            for(var i=1;i<=n;i++)
+            {
+                var num=parseInt(prompt("Enter the "+i+" number:"));
+                sum+=num;
+            }
+            var avg=sum/n;
+            document.write("<h1>Output:</h1>")
+            document.write("Sum:"+sum+"<br>");
+            document.write("Average:"+avg);
+        }
+     </script>
+</head>
+<body>
+    <button onclick="calculateSumAndAverage()">Calculate the sum and average</button>
+</body>
+</html>

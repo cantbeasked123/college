@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div {
+          width: 200px;
+          height: 100px;
+          margin: 20px;
+          border: 2px solid black;
+          text-align: center
+        }
+        </style>
+</head>
+<body>
+	
+	<div id="eventBox" onmousemove="handleMouseMove(event)">Interact with Me</div>
+	<p id="test"></p>
+    <script>
+		const eventBox=document.getElementById("eventBox");
+        function handleMouseDown() {
+            alert("Mouse button pressed down!");
+        }
+        function handleMouseUp() {
+            alert("Mouse button released!");
+        }
+        function handleMouseOver() {
+            alert("Mouse is over the element!");
+        }
+        function handleMouseOut() {
+            alert("Mouse has left the element!");
+            document.getElementById("test").innerHTML = "";
+
+        }
+        function handleMouseMove(e) {
+            let x=e.clientX;
+            let y=e.clientY;
+            let coor="Coordinates: ("+x+","+y+")";
+            document.getElementById("test").innerHTML=coor;
+        }
+		eventBox.onmousedown = handleMouseDown;
+        eventBox.onmouseup = handleMouseUp;
+        eventBox.onmouseover = handleMouseOver;
+        eventBox.onmouseout = handleMouseOut;
+        eventBox.onmousemove = handleMouseMove;
+    </script>
+</body>
+</html>

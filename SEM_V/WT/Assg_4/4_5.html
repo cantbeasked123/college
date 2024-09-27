@@ -1,0 +1,51 @@
+<html>
+<head>
+    
+    <script>
+        function f1() {
+            alert("Page has loaded!");  
+        }
+        function f2() {
+            alert("Button was clicked!");  
+        }
+        function f3() {
+            alert("Button was double-clicked!");  
+        }
+        function f4() {
+            alert("Form submitted!"); 
+			return false;
+        }
+        function f5() {
+            alert("Form reset!"); 
+        }
+        function f6() {
+            alert("Text selected!");  
+        }
+        function f7() {
+            alert("Dropdown value changed!");  
+        }
+    </script>
+</head>
+<body onload="f1()">
+    <h1>Demonstrating Different Events Using JavaScript</h1>
+    <button onclick="f2()">Click Me</button>
+    <button ondblclick="f3()">Double Click Me</button><br><br>
+    <form onsubmit="return f4()" onreset="f5()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments" onselect="f6()"></textarea><br><br>
+
+        <label for="options">Choose a City:</label>
+        <select id="options" name="options" onchange="f7()">
+            <option value="Option 1">Mapusa</option>
+            <option value="Option 2">Panjim</option>
+            <option value="Option 3">Porvorim</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+</body>
+</html>

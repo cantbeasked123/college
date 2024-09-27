@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        var names = [];
+        var salaries = [];
+        for (var i = 0; i < 5; i++) 
+        {
+            names[i] = prompt("Enter the name of Employee "+(i+1)+":");
+            salaries[i] = parseFloat(prompt("Enter the salary of "+names[i]+":"));
+        }
+        var max=0;
+        var min=0;
+        for (var i = 0; i < salaries.length; i++) 
+        {
+            if (salaries[i] > salaries[max]) 
+            {
+                max = i;
+            }
+            if (salaries[i] < salaries[min]) 
+            {
+                min = i;
+            }
+        }
+        document.write("Employee with the highest salary: " + names[max] + " with a salary of " + salaries[max] + "<br>");
+        document.write("Employee with the lowest salary: " + names[min] + " with a salary of " + salaries[min] + "<br>");
+</script>  
+</body>
+</html>

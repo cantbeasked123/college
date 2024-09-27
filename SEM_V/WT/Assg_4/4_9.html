@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function calculator(){
+            var num1 = parseFloat(prompt("Enter the first number:"));
+            var operator = prompt("Enter the operator (+, -, *, /,%):");
+            var num2 = parseFloat(prompt("Enter the second number:"));
+            var result;
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 == 0) {
+                        alert("Error: Division by zero is not allowed.");
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+				case '%':
+                    result = num1 % num2;
+                    break;
+                default:
+                    alert("Invalid operator");
+                    return;
+            }
+            document.write("OUTPUT: " +num1 + " " + operator + " " + num2 + " = " + result);
+        } 
+    </script>
+</head>
+<body>
+    <button onclick="calculator()">Calculate</button>
+</body>
+</html>

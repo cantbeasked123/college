@@ -1,0 +1,53 @@
+<html>
+<head>
+    <script>
+        function calculatePercentageAndGrade()
+		{
+			var s1,s2,s3,s4,s5,totalmarks,percentage;
+			s1 = parseFloat(prompt("Enter the subject1 marks:"));
+			s2 = parseFloat(prompt("Enter the subject2 marks:"));
+			s3 = parseFloat(prompt("Enter the subject3 marks:"));
+			s4 = parseFloat(prompt("Enter the subject4 marks:"));
+			s5 = parseFloat(prompt("Enter the subject5 marks:"));
+			document.write("<h1>Displaying marks of 5 subjects:</h1>");
+			document.write("subject1 marks: "+s1);
+			document.write("<br>subject2 marks: "+s2);
+			document.write("<br>subject3 marks: "+s3);
+			document.write("<br>subject4 marks: "+s4);
+			document.write("<br>subject5 marks: "+s5);
+			
+			totalmarks= s1 + s2 + s3 + s4 + s5;
+			document.write("<br><br>Total marks are: "+totalmarks);
+			percentage=(totalmarks/500)*100;
+			var grade;
+
+			if (percentage >= 90) 
+            {
+				grade = 'A';
+			} 
+            else if (percentage >= 75) 
+            {
+				grade = 'B';
+			} 
+            else if (percentage >= 60) 
+            {
+				grade = 'C';
+			} 
+            else if (percentage >= 45) 
+            {
+				grade = 'D';
+			} 
+            else 
+            {
+				grade = 'F';
+			}
+
+			alert("Percentage: "+percentage.toFixed(2) + "%\nGrade: "+grade);
+		}
+
+     </script>
+</head>
+<body>
+    <button onclick="calculatePercentageAndGrade()">Calculate the percentage and grade</button>
+</body>
+</html>
