@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function validate()
+		{
+			//GETTING VALUES
+
+			//textboxes
+			var username=document.getElementById("un").value;
+			var password=document.getElementById("pw").value;
+			var u=/^COMP\d{2}$/;
+			var p=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{6,10}$/;
+
+			//radio
+			var branch_selected="";
+			var br=document.getElementsByName("branch")
+			for(var i=0;i<br.length;i++)
+			{
+				if(br[i].checked==true)
+					branch_selected=br[i].value;
+			}
+
+			//dropdown
+			var state_selected="";
+			var s=document.getElementById("dropdown");
+			var state_selected=s.options[s.selectedIndex].value;
+
+			//checkboxes
+			var lng=document.getElementsByName("lang");
+			var lan="";
+			for(var i=0;i<lng.length;i++)
+			{
+				if(lng[i].checked==true)
+					lan=lan+" "+lng[i].value;
+			}
+
+			//phone number
+			var phno=document.getElementById("ph").value;
+			var ph=/^[789]{1}[0-9]{9}$/;
+
+			//email
+			var email=document.getElementById("em").value;
+			var e=/^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
+
+			//VALIDATING:
+			//textboxes
+			if(username=="")
+			{
+				alert("username cannot be empty");
+				return false;
+			}			
+			else if(password=="")
+			{
+				alert("password cannot be empty");
+				return false;
+			}
+			else if(u.test(username)==false)
+			{
+				alert("invalid username");
+				return false;
+			}
+			else if(p.test(password)==false)
+			{
+				alert("invalid password");			
+				return false;
+			}
+			else if(branch_selected=="")
+			{
+				alert("select a branch");
+				return false;
+			}
+			else if(state_selected=="")
+			{
+				alert("select a state");
+				return false;
+			}
+			else if(lan=="")
+			{
+				alert("select a language");
+				return false;
+			}
+			else if(ph.test(phno)==false)
+			{
+				alert("invalid phone number");
+				return false;
+			}
+			else if(e.test(email)==false)
+			{
+				alert("invalid email");
+				return false;
+			}			
+			else 
+			{
+				alert("Form submitted successfully");
+				return true;
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<form onsubmit="return validate()">
+		<!--testboxes:username and password-->
+		<label>Enter username:</label>
+		<input type="text" id="un"><br><br>
+		<label>Enter password:</label>
+		<input type="password" id="pw"><br><br>
+
+		<!--radio buttons-->
+		<label>Enter Branch:</label><br>
+		<input type="radio" id="co" name="branch" value="computer">COMP<br>
+		<input type="radio" id="ec" name="branch" value="electronics">ECE<br>
+		<input type="radio" id="me" name="branch" value="mechanical">MECH
+		<br><br>
+
+		<!--dropdown menu-->
+		<label>Enter State:</label>
+		<select id="dropdown">
+			<option value="goa">goa</option>
+			<option value="hyd">hyderabad</option>
+			<option value="delhi">delhi</option>
+		</select>
+		<br><br>
+
+		<!--checkboxes-->
+		<label>Enter Languages:</label><br>
+		<input type="checkbox" id="m" name="lang" value="english">ENG<br>
+		<input type="checkbox" id="n" name="lang" value="konkani">KON<br>
+		<input type="checkbox" id="f" name="lang" value="hindi">HI<br><br>	
+
+		<!--phone number-->
+		<label>Enter phno:</label>
+		<input type="text" id="ph">
+		<br><br>
+		
+		<!--email-->
+		<label>Enter email:</label>	
+		<input type="email" id="em"><br><br>
+	
+		<input type="submit">
+		<input type="reset" value="reset">
+	</form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function changeParagraphStyle()
+        {
+          var p=document.getElementsByTagName("p");
+          for (var i of p) 
+          {
+            i.style.fontSize="30px";
+            i.style.backgroundColor="orange";
+          }
+          alert("Fontsize and background colour changed")
+        }
+      </script>
+</head>
+<body>
+
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+    <button onclick="changeParagraphStyle()">Change Paragraph Style</button>
+</body>
+</html>

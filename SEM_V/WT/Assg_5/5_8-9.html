@@ -1,0 +1,42 @@
+<html>
+<head>
+	<script>
+		function validate()
+		{
+			var username=document.getElementById("un").value;
+			var password=document.getElementById("pw").value;
+			var x=/^COMP\d{2}$/;
+			var p=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[a-zA-Z\d@$!%*?&]{6,10}$/;
+
+			if(username=="")
+			{
+				alert("username cannot be empty");
+			}			
+			else if(password=="")
+			{
+				alert("password cannot be empty");
+			}
+			else if(x.test(username)==false)
+			{
+				alert("invalid username");
+			}
+			else if(p.test(password)==false)
+			{
+				alert("invalid password");
+			}
+			else
+			{
+				alert("Successfully entered username and password");
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<p>Enter username:</p>
+	<input type="text" id="un">
+	<p>Enter password:</p>
+	<input type="text" id="pw"><br><br>
+	<button onclick="validate()">click</button>
+</body>
+</html>

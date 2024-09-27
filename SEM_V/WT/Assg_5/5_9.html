@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>javascript coding</title>
+    <script>
+        function validate() {
+            var password = document.getElementById("pw").value;
+            if (password.trim().length < 6 || password.trim().length > 10)
+            {
+                alert("password size must be 6 to 8 characters");
+                return false;
+            } 
+            else if (password.search(/[A-Z]/) == -1) 
+            {
+                alert("password must contain atleast one Uppercase alphabet");
+                return false;
+            } 
+            else if (password.search(/[a-z]/) == -1) 
+            {
+                alert("password must contain atleast one lowercase alphabet");
+                return false;
+            } 
+            else if (password.search(/[0-9]/) == -1) 
+            {
+                alert("password must contain atleast one number");
+                return false;
+            } 
+            else if (password.search(/[\!\@\#\$\%\^\&\*\:\;\,\.]/) == -1) 
+            {
+                alert("password must contain atleast one special character @ # $ % & * ; : , .");
+                return false;
+            } 
+            else 
+            {
+                alert("Valid password");
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return validate()">
+        <label>Enter Password:</label><br>
+        <input type="password" id="pw"><br><br>
+        <input type="submit">
+    </form>
+</body>
+</html>

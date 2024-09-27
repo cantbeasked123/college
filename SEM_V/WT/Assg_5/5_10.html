@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function validate()
+		{
+			var email=document.getElementById("em").value;
+			var e=/^([a-zA-Z0-9\.-]+)@([a-zA-Z0-9-]+)\.([a-z]+)(\.[a-z]+)?$/;
+			if(e.test(email)==false)
+			{
+				alert("Email invalid");
+			}			
+			else
+			{
+				alert("Valid email");
+			}
+		}
+	</script>
+</head>
+<body>
+	<p>Enter email:</p>
+	<input type="email" id="em"><br><br>
+	<button onclick="validate()">click</button>
+</body>
+</html>
