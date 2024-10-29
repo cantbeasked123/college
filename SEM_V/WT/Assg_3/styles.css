@@ -1,0 +1,56 @@
+/* External CSS - styles.css */
+
+/* Universal selector */
+* {
+    box-sizing: border-box;
+}
+
+/* Element selector */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f8;
+    background-image: url('hospital_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+/* ID selector */
+#welcome {
+    color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Class selectors */
+.highlight {
+    background-color: #f4f4f4;
+    color: #ff0000;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.image img {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Grouping selector */
+h2, h3, figcaption {
+    color: #333;
+    margin: 0 0 10px;
+}
+
+/* Contextual selector */
+.image figcaption {
+    font-style: italic;
+    color: #666;
+}
+
+/* Pseudo-class */
+a:hover {
+    color: red;
+}
+

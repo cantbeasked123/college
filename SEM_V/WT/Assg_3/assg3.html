@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galaxy Hospital</title>
+    <!-- Internal CSS -->
+    <style>
+        /* Element selector */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Grouping selector */
+        h2, h3, figcaption {
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        /* Contextual selector */
+        .image img {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        header {
+            background-color: #0000ff;
+            color: #fff;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+        }
+
+        .div {
+            color: white;
+            background-color: #0000ff;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            background-color: #fafafa;
+        }
+
+        th {
+            background-color: #0000ff;
+            color: #fff;
+        }
+
+        .captioned-image figcaption {
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Pseudo-class */
+        a:hover {
+            color: red;
+        }
+
+        /* Pseudo-element */
+        p::first-line {
+            font-weight: bold;
+        }
+
+        /* Background properties */
+        body {
+            background-color: #f0f0f8;
+            background-image: url('hospital_bg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Positioning properties */
+        .fixed-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Galaxy Hospital</h1>
+        <!-- Inline CSS -->
+        <div class="image" style="text-align: center;">
+            <a href="https://galaxyhospitalgoa.com" target="_blank">
+                <img src="hospital_logo.jpg" alt="Galaxy Hospital Logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="welcome">
+            <h2>Welcome to Galaxy Hospital</h2>
+            <p class="highlight">We are committed to providing top-notch healthcare services.</p>
+        </section>
+
+        <section>
+            <h2>About Us</h2>
+            <p>Welcome to Galaxy Hospital. We offer comprehensive healthcare solutions.</p>
+        </section>
+
+        <section>
+            <h2>Gallery</h2>
+            <div class="image">
+                <img src="galaxy_hospital.jpg" alt="Hospital Building">
+                <figcaption>Hospital Building</figcaption>
+                <img src="galaxy_hospital1.jpg" alt="Hospital Entrance">
+                <figcaption>Hospital Entrance</figcaption>
+            </div>
+        </section>
+
+        <section>
+            <h2>Links</h2>
+            <p><a href="https://galaxyhospitalgoa.com" target="_blank">Visit our website</a></p>
+            <p><a href="contact.html">Contact Us</a></p>
+        </section>
+
+        <section>
+            <h2>Departments</h2>
+            <table>
+                <tr>
+                    <th>Department</th>
+                    <th>Head</th>
+                    <th>Staff</th>
+                </tr>
+                <tr>
+                    <td rowspan="2">Cardiology</td>
+                    <td rowspan="2">Dr. Smith</td>
+                    <td>Dr. Alan</td>
+                </tr>
+                <tr>
+                    <td>Dr. John</td>
+                </tr>
+                <tr>
+                    <td>Neurology</td>
+                    <td colspan="2">Dr. Johnson</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Services</h2>
+            <h3>Our Services</h3>
+            <ul>
+                <li>Emergency Care</li>
+                <li>Outpatient Services</li>
+                <li>Surgical Services</li>
+            </ul>
+            <h3>Special Clinics</h3>
+            <ol>
+                <li>Heart Clinic</li>
+                <li>Brain Clinic</li>
+                <li>Orthopedic Clinic</li>
+            </ol>
+            <h3>Patient Information</h3>
+            <dl>
+                <dt>Visiting Hours</dt>
+                <dd>9 AM - 8 PM</dd>
+                <dt>Contact Information</dt>
+                <dd>Phone: (+91) 456-7890</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Notice</h2>
+            <div class="div">
+                Important: Please follow COVID-19 safety protocols.
+            </div>
+        </section>
+    </main><br><br><br><br>
+
+    <!-- Fixed footer -->
+    <div class="fixed-footer">
+        <p>&copy; 2024 Galaxy Hospital</p>
+    </div>
+</body>
+</html>
