@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Galaxy Hospital Sign-In Form</title>
+    <style>
+	  
+        form {
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        label {
+            color: #000000;
+        }
+        input{
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+	  button {
+            font-size: 16px;
+            width: 25%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h2>Galaxy Hospital Sign-In Form</h2>
+    <form>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+		
+        <p>
+            <button type="reset" value="reset">Reset</button>
+            <button type="submit" value="submit">Log in</button>
+        </p>
+
+    </form>
+	<p>Not signed in?</p>
+	<a href="p1.html">Click here to sign up</a>
+</body>
+</html>
