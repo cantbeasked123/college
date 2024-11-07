@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Galaxy Hospital Appointment Management</title>
+    <link rel="stylesheet" href="../client/css/appt_booking.css">
+</head>
+<body>
+    <form id="appointmentForm" action="../server/appointment.php" method="POST">
+        <h2 style="text-align: center">Appointment Booking</h2>
+        <div>
+            <label for="id">Appointment ID(for update/delete):</label> 
+            <input type="number" id="id" name="id">
+        </div>
+        <div>
+            <label for="userid">User ID:</label>
+            <input type="number" id="userid" name="userid" required>
+        </div>
+
+        <div>
+            <label for="patient_name">Patient Name:</label>
+            <input type="text" id="patient_name" name="patient_name" required>
+        </div>
+        
+        <div>
+            <label for="appointment_date">Appointment Date:</label>
+            <input type="date" id="appointment_date" name="appointment_date" required>
+        </div>
+        
+        <div>
+            <label for="appointment_time">Appointment Time:</label>
+            <input type="time" id="appointment_time" name="appointment_time" required>
+        </div>
+
+        <div>
+            <h3>Wards and Their Numbers</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ward Number</th>
+                        <th>Ward Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>General Ward</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>ICU</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Pediatrics Ward</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>ER Ward</td>
+                    </tr>
+                </tbody>
+            </table>
+            <label for="ward_no">Ward No:</label>
+            <input type="number" id="ward_no" name="ward_no" required>
+        </div>
+
+        <div>
+            <button type="submit" name="action" value="add">Add Appointment</button>
+            <button type="submit" name="action" value="update">Update Appointment</button>
+            <button type="submit" name="action" value="delete">Delete Appointment</button>
+        </div>
+    </form>
+
+    <footer style="position: fixed; bottom: 0; width: 100%; background-color: #007bff; color: white; text-align: center; padding: 10px;">
+        &copy; 2024 Galaxy Hospital
+    </footer>
+
+    <script src="appt.js"></script>
+</body>
+</html>
