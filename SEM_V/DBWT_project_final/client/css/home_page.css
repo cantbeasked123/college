@@ -1,0 +1,197 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff; /* Keeps the header background vibrant */
+    padding: 20px 10px ;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adds shadow to the header */
+}
+
+.image img {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav {
+    display: flex; /* Align the nav items horizontally */
+    gap: 20px; /* Space between links */
+}
+
+nav a {
+    color: #ffffff; /* Vibrant yellow to make the links pop */
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    background-color: #0056b3; /* Dark blue background for links */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #ffdd57; /* Background changes to vibrant yellow on hover */
+    color: #007bff; /* Text turns blue when hovered */
+}
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #0056b3;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+ul, ol, dl {
+    margin-left: 20px;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.div {
+    background-color: #ff4757;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+#about-us p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: left; /* Aligns the paragraph text to the left */
+    max-width: 700px; /* Limits the width of the paragraph for better readability */
+}
+
+#gallery {
+    background-color: #f8f9fa; /* Light background for contrast */
+}
+
+#gallery .image {
+    display: flex; /* Arrange images horizontally */
+    justify-content: center; /* Center the images within the section */
+    gap: 20px; /* Space between images */
+    flex-wrap: wrap; /* Allows wrapping to a new line on smaller screens */
+}
+
+#gallery .image img {
+    width: 300px; /* Sets a consistent width for the images */
+    height: auto;
+    border-radius: 10px; /* Slight rounding of image corners */
+    border: 5px solid #007bff; /* Blue border for images */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds smooth hover effects */
+}
+
+#gallery .image img:hover {
+    transform: scale(1.05); /* Grows slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adds a shadow on hover */
+}
+
+#gallery .image figcaption {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Link Button Styling */
+.appointment-link {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.appointment-link:hover {
+    background-color: #ffdd57;
+}
+
+/* New Display Button Styling */
+.display-button {
+    font-weight: bold;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    width: auto; /* Prevent stretching, set width to auto */
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto; /* Center align the button horizontally */
+    margin-right: auto; /* Center align the button horizontally */
+}
+
+.display-button:hover {
+    background-color: #ffdd57; /* Background changes to vibrant yellow on hover */
+    color: #007bff; /* Text turns blue when hovered */
+    text-decoration: underline;
+}
