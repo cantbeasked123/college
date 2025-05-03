@@ -1,0 +1,10 @@
+parent(pam,bob).
+parent(tom,bob).
+parent(tom,liz).
+parent(bob,ann).
+parent(bob,pat).
+parent(pat,jim).
+grandparent(X,Y):-parent(X,Z),parent(Z,Y).
+grandchildren(X,Y):-parent(Y,Z),parent(Z,X).
+common_parent(X,Y):-parent(Z,X),parent(Z,Y),X\=Y.
+has_child(X):-parent(X,Y).

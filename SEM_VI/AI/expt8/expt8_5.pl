@@ -1,0 +1,11 @@
+cat(tom).
+lazy(pratyusha).
+colour(hair,black).
+loves(kunal,pasta).
+loves(nawaz,play_games).
+dances(x):-fail.
+is_free(x):-fail.
+happy(lili):-dances(lili).
+hungry(tom):-searching_food(tom).
+friends(jack,bili):-loves(jack,cricket),loves(bili,cricket).
+will_go_to_play(person):-school_closed,is_free(person).
