@@ -1,0 +1,5 @@
+
+localhost refers to the same machine (loopback address 127.0.0.1). Use it when running both server and client on one computer.
+
+A device IP address (e.g., 192.168.1.10) is used when the server and client run on different machines on the same network.
+use ipconfig to find ip address and update it in the client code after running the server code first.
